@@ -1,0 +1,94 @@
+package com.example.lab_7
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import java.nio.file.WatchEvent
+
+@Composable
+fun UpcomingRacesScreen(navController: NavController){
+
+    var location by remember { mutableStateOf("") }
+
+    val races = remember { mutableListOf<String>() }
+
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp)
+    ) {
+
+        Button(
+            onClick = {
+                navController.popBackStack()
+            },
+            modifier = Modifier.testTag("backButton")
+        ){
+            Text("Back")
+        }
+
+        Text(
+            text="Upcoming Races",
+            fontSize = 30.sp
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row() {
+
+            TextField(
+                value = location,
+                onValueChange = {
+                    location = it
+                },
+                label = {
+                    Text ("Race Location")
+                        },
+                modifier = Modifier.testTag("locationInput")
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    if (location.isNotBlank()){
+                        races.add(location)
+                        location = ""
+                    }
+                },
+                modifier = Modifier.testTag("addRaceButton")
+
+            ) {Text("Add") }
+        }
+
+        LazyColumn {
+            items(races) {
+                    race ->
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = race,
+                    fontSize = 24.sp
+                )
+            }
+        }
+    }
+}
