@@ -74,7 +74,7 @@ class FormulaZeroTest {
             .performClick()
 
         composeTestRule
-            .onNodeWithText("FormulaZero Driver")
+            .onNodeWithText("FormulaZero Drivers")
             .assertExists()
     }
 }
