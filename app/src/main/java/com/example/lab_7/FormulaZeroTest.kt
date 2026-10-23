@@ -44,12 +44,21 @@ class FormulaZeroTest {
             .onNodeWithText("FormulaZero Home")
             .assertExists()
 
+
+    }
+
+    @Test
+    fun navigate_to_driver_and_verify(){
         composeTestRule
             .onNodeWithTag("driverButton")
             .performClick()
 
         composeTestRule
-            .onNodeWithText("driverInput")
+            .onNodeWithTag("addDriverButton")
+            .performClick()
+
+        composeTestRule
+            .onNodeWithTag("driverInput")
             .performTextInput("Luis Hamilton")
 
         composeTestRule
@@ -67,7 +76,5 @@ class FormulaZeroTest {
         composeTestRule
             .onNodeWithText("FormulaZero Driver")
             .assertExists()
-
-
     }
 }

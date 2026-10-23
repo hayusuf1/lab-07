@@ -70,37 +70,43 @@ fun DriversScreen(navController: NavController){
             )
 
             Button(
-                modifier = Modifier.testTag("addButton"),
                 onClick = {
                     if(driver.isNotBlank()){
                         drivers.add(driver)
                         driver = ""
                     }
 
-                }
+                },
+
+                modifier = Modifier.testTag("addDriverButton")
+
             ) {Text("Add Driver") }
 
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-    LazyColumn {
-        items(drivers) { driver ->
+        LazyColumn {
 
-            Text(
-                text = driver,
-                fontSize = 24.sp
-            )
+            items(drivers) {
+
+                driver ->
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = driver,
+                    fontSize = 24.sp
+                )
+            }
+
         }
-
-    }
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            modifier = Modifier.testTag("clearButton"),
             onClick = {
                 drivers.clear()
-            }
+            },
+            modifier = Modifier.testTag("clearButton")
+
         ) { Text("Clear Drivers") }
 
     }
