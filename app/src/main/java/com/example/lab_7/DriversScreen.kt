@@ -50,7 +50,7 @@ fun DriversScreen(navController: NavController){
             onClick = {
                 navController.popBackStack()
             }
-        ) {Text("Go Home") }
+        ) {Text("Back") }
 
         Spacer(modifier = Modifier.height(16.dp))
 
